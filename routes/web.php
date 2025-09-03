@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PetaniController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,9 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return '<h1>Selamat Datang di Dashboard Admin</h1>';
     });
-    // Letakkan semua rute admin lainnya di sini
+    
+    // route untuk mengelola petani
+    Route::resource('/admin/petani', PetaniController::class)->names('admin.petani');
 });
 
 // Hanya bisa diakses oleh user yang sudah login dan memiliki peran 'petani'
